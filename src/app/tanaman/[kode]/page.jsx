@@ -63,7 +63,7 @@ export default function Tumbuhan({ params }) {
               src="https://res.cloudinary.com/dgnfgxqem/image/upload/v1732966875/tumbuhan/kgt0pkfa1jjyqfx1mill.jpg"
               className="w-full h-full lg:h-full object-cover"
             />
-            <div className="overflow-hidden absolute bg-black bg-opacity-50 top-0 left-1/2 transform -translate-x-1/2 rounded-b-lg max-lg:rounded-r-none w-full h-full px-2 text-xs lg:max-h-screen">
+            <div className="text-white mx-2 px-2 text-justify h-full overflow-y-auto no-scrollbar overflow-hidden absolute bg-black bg-opacity-50 top-0 left-1/2 transform -translate-x-1/2 rounded-b-lg max-lg:rounded-r-none w-full h-full px-2 text-xs lg:max-h-screen">
             <div className='text-white mx-2 px-2 text-justify h-full overflow-y-auto no-scrollbar'>
               <div className="font-bold mt-2"> {item.nama} : {item.subNama}</div>
               <div className=" mt-1">{item.namaLatin}</div>
