@@ -1,101 +1,130 @@
-import Image from "next/image";
+"use client";
+import Detail from './detail'
+import React, { useState, useEffect } from 'react';
+import { supabase } from './server/subapase'; // pastikan impor dari file Supabase yang benar
 
-export default function Home() {
+export default function TumbuhanList() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [tumbuhanData, setTumbuhanData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from('tumbuhan')
+          .select('*');
+
+        if (error) {
+          throw error;
+        }
+        setTumbuhanData(data);
+      } catch (err) {
+        setError('Terjadi kesalahan saat mengambil data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const openModal = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedItem(null);
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <div className='grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 w-full h-full justify-center'>
+      {tumbuhanData.map((item) => (
+        <div
+          key={item.kode}
+          className="flex flex-row sm:flex-col md:flex-col border-2 rounded-lg shadow-xl bg-orange-200 bg-opacity-35  h-[180px] sm:h-auto md:h-auto lg:h-auto w-full items-center text-left"
+        >
+          <div className="flex flex-col max-sm:border-r-2 sm:border-b-2 md:border-b-2 lg:border-b-2 br-border-none sm:rounded-bl-none sm:rounded-tr-lg md:border-b md:border-b rounded-l-sm md:rounded-bl-none md:rounded-t-lg h-full justify-center items-center w-2/4 sm:w-full md:w-full lg:w-full relative">
+            <img
+              src={item.foto}
+              alt="Foto"
+              className="object-cover rounded-l-md h-full w-full sm:rounded-t-md sm:h-24 sm:w-24 md:h-24 md:w-24 lg:h-44 lg:w-full"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center py-2">
+              <p className="font-bold text-[12px] sm:text-xs md:text-xs lg:text-xs underline underline-offset-2">
+                {item.nama}
+              </p>
+              <p className="font-bold text-[10px] sm:text-[8px] md:text-[10px]">
+                {item.subLatin}
+              </p>
+            </div>
+          </div>
+
+          <div className="relative w-full h-full">
+            <img
+              src="https://res.cloudinary.com/dgnfgxqem/image/upload/v1732966875/tumbuhan/kgt0pkfa1jjyqfx1mill.jpg"
+              alt="Background"
+              className="h-44 md:h-44 lg:h-44 w-full h-full object-cover rounded-r-md sm:rounded-r-none sm:rounded-b-md" />
+            <div className="sm:rounded-b-md absolute inset-0 w-full flex h-full flex-col justify-between rounded-r-md sm:rounded-tr-none md:rounded-t-none md:rounded-bl-lg p-2 w-3/4 sm:w-full px-4">
+              <div className="overflow-hidden overflow-y-auto w-full py-1 flex flex-col space-y-1 text-[8px] sm:text-[8px] md:text-[8px] lg:text-[8px] no-scrollbar h-full sm:h-28 md:h-28 lg:h-28">
+                <div className='text-justify'>
+                  <div className="font-bold mt-2"> {item.nama} : {item.subNama}</div>
+                  <div className=" mt-1">{item.namaLatin}</div>
+                  <div className="font-bold mt-4"> {item.subAsalusul}</div>
+                  <div className=" mt-1">{item.asalUsul}</div>
+                  <div className="font-bold mt-4"> {item.subSiklus}</div>
+                  <div className=" mt-1">{item.siklusHidup}</div>
+                  <div className="font-bold mt-4">{item.subNutrisi}</div>
+                  <div className=" mt-1">{item.nutrisi}</div>
+                  <div className="font-bold mt-4">{item.subJenis}</div>
+                  <div className=" mt-1">{item.jenis}</div>
+                  <div className="font-bold mt-4">{item.subBudidaya}</div>
+                  <div className=" mt-1">{item.budiDaya}</div>
+                  <div className="font-bold mt-4"> {item.subResep}</div>
+                  <div className=" mt-1 mb-2">{item.resep}</div>
+                  <div className="font-bold mt-4"> {item.subKesimpulan}</div>
+                  <div className=" mt-1 mb-2">{item.kesimpulan1}</div>
+                  <div className=" mt-1 mb-2">{item.kesimpulan2}</div>
+                  <div className=" mt-1 mb-2">{item.kesimpulan3}</div>
+                </div>
+              </div>
+              <div className='relative'>
+                <button
+                  onClick={() => openModal(item)}
+                  className="z-10 w-full mt-1.5 rounded text-center px-1 py-1 text-[10px] sm:text-[8px] md:text-[8px] lg:text-[8px] font-bold bg-orange-400 hover:bg-orange-600 text-black">
+                  EDIT
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ))}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h2 className="text-lg font-bold mb-4">Edit {selectedItem?.nama}</h2>
+            <Detail item={selectedItem} />
+            <button
+              onClick={closeModal}
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">
+              Tutup
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

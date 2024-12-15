@@ -14,7 +14,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "cloudinary": "^2.5.1",
     "dotenv": "^16.4.5",
-    "next": "14.2.15",
+    "next": "^15.1.0",
     "next-cloudinary": "^6.15.0",
     "react": "^18",
     "react-dom": "^18"
