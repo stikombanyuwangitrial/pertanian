@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { supabase } from './server/subapase';
 
 export default function Tumbuhan({ item }) {
@@ -20,11 +20,15 @@ export default function Tumbuhan({ item }) {
 
     const handleSave = async () => {
         try {
-            const { error } = await supabase
-                .from('tumbuhan') // pastikan ini adalah nama table kamu
+            console.log('Edited Item before save:', editedItem);
+            const { data, error } = await supabase
+                .from('tumbuhan')
                 .update(editedItem)
-                .eq('kode', item.kode); // pastikan 'id' adalah identifier yang benar untuk mengupdate data yang sesuai
-
+                .eq('kode', item.kode)
+                .select();
+    
+            console.log('Response Data:', data);
+    
             if (error) {
                 throw error;
             }
@@ -33,9 +37,10 @@ export default function Tumbuhan({ item }) {
             console.error('Error updating data:', error);
         }
     };
+    
 
     return (
-        <div className="p-4 w-full h-full justify-center items-center ">
+        <div className="p-4 w-full h-full justify-center items-center">
             <div className="overflow-hidden border border-white w-full max-h-screen lg:h-full rounded-lg">
                 <div className="flex flex-col lg:flex-row">
                     <div className="relative h-full w-full lg:w-2/3 border-b lg:h-auto">
@@ -54,7 +59,7 @@ export default function Tumbuhan({ item }) {
                                         className="text-center text-[14px] border-b-2 border-white bg-transparent text-white"
                                     />
                                 ) : (
-                                    <p className=" text-[14px] border-b-2 border-white">{item.nama}</p>
+                                    <p className="text-[14px] border-b-2 border-white">{item.nama}</p>
                                 )}
                                 <p className="text-[10px] italic">( {item.subLatin} )</p>
                             </div>
@@ -66,7 +71,7 @@ export default function Tumbuhan({ item }) {
                             className="w-full h-full lg:h-full object-cover"
                         />
                         <div className="overflow-hidden absolute bg-black bg-opacity-50 top-0 left-1/2 transform -translate-x-1/2 rounded-b-lg max-lg:rounded-r-none w-full h-full px-2 text-xs lg:max-h-screen">
-                            <div className="border text-white mx-2 px-2 text-justify h-full overflow-y-auto no-scrollbar">
+                            <div className="text-white mx-2 px-2 text-justify h-full overflow-y-auto no-scrollbar">
                                 <div className="font-bold mt-2">
                                     {isEditing ? (
                                         <input
@@ -82,7 +87,7 @@ export default function Tumbuhan({ item }) {
                                 </div>
                                 {isEditing ? (
                                     <textarea
-                                        name="nutrisi"
+                                        name="namaLatin"
                                         value={editedItem.namaLatin}
                                         onChange={handleChange}
                                         className="mt-2 text-white bg-transparent w-full h-28 border border-white"
@@ -111,7 +116,6 @@ export default function Tumbuhan({ item }) {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

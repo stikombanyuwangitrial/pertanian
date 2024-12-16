@@ -114,7 +114,7 @@ export default function TumbuhanList() {
       ))}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="p-6 rounded-lg shadow-lg max-w-md w-full">
+          <div className="bg-black bg-opacity-30 p-24 rounded-lg shadow-lg w-full">
             <h2 className="text-lg font-bold mb-4">Edit {selectedItem?.nama}</h2>
             <Detail item={selectedItem} />
             <button
