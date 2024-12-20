@@ -112,19 +112,23 @@ export default function TumbuhanList() {
           </div>
         </div>
       ))}
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-black bg-opacity-30 p-24 rounded-lg shadow-lg w-full">
-            <h2 className="text-lg font-bold mb-4">Edit {selectedItem?.nama}</h2>
-            <Detail item={selectedItem} />
-            <button
-              onClick={closeModal}
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">
-              Tutup
-            </button>
-          </div>
-        </div>
-      )}
+  {isModalOpen && (
+  <div className="fixed top-0 left-0 right-0 flex items-center justify-center bg-black bg-opacity-50 h-full z-50">
+    <div className="bg-black bg-opacity-60 rounded-lg shadow-lg w-full px-16 py-4 relative">
+      <button
+        onClick={closeModal}
+        className="absolute top-2 right-2 text-white text-2xl font-bold"
+      >
+        &times;
+      </button>
+      
+      <h2 className="ml-4 text-lg font-bold">Edit {selectedItem?.nama}</h2>
+      <Detail item={selectedItem} />
+    
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

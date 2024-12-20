@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@cloudinary/react": "^1.13.0",
+    "@mdx-js/loader": "^3.1.0",
+    "@next/mdx": "^15.1.1",
     "@supabase/supabase-js": "^2.46.2",
     "@vercel/speed-insights": "^1.1.0",
     "cloudinary": "^2.5.1",
