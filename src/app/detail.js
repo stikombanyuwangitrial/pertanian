@@ -95,7 +95,7 @@ export default function Tumbuhan({ item }) {
 
     return (
         <div className="p-4 w-full h-full justify-center items-center">
-            <div className="overflow-hidden border border-white w-full h-[600px] lg:h-[500px] rounded-lg">
+            <div className="overflow-hidden border border-white w-full h-full lg:h-[500px] rounded-lg">
                 <div className="flex flex-col lg:flex-row">
                     <div className="relative h-full w-full lg:w-2/3 border-b lg:border-r ">
                         <img
