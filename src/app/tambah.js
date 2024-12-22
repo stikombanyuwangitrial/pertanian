@@ -149,7 +149,7 @@ export default function Tumbuhan() {
               alt="New Tumbuhan"
             />
             <div className="absolute bg-black bg-opacity-50 top-0 left-1/2 transform -translate-x-1/2 rounded-b-lg w-full h-full lg:h-full">
-              <div className="text-white mx-2 px-2 text-justify overflow-y-auto h-full no-scrollbar">
+              <div className="lg:text-[14px] text-[11px] text-white mx-2 px-2 text-justify overflow-y-auto h-full no-scrollbar">
                 <input
                   type="file"
                   onChange={handleFileChange}
@@ -161,7 +161,7 @@ export default function Tumbuhan() {
                   placeholder="Nama Tumbuhan"
                   value={newItem.nama}
                   onChange={handleChange}
-                  className="text-white bg-transparent border-b-2 w-full border-white mb-2"
+                  className="text-white bg-transparent border-b-2 w-full border-white mb-2 "
                 />
                 <input
                   type="text"
@@ -173,15 +173,15 @@ export default function Tumbuhan() {
                 />
                 <input
                   type="text"
-                  name="subNama"
-                  placeholder="Sub Nama"
+                  name="NamaAlternatif"
+                  placeholder="Nama Alternatif"
                   value={newItem.subNama}
                   onChange={handleChange}
                   className="text-white bg-transparent border-b-2 w-full border-white mb-2"
                 />
                 <textarea
-                  name="namaLatin"
-                  placeholder="Nama Latin Lengkap"
+                  name="Keterangan"
+                  placeholder="Keterangan"
                   value={newItem.namaLatin}
                   onChange={handleChange}
                   className="text-white bg-transparent w-full h-28 border border-white mb-2"

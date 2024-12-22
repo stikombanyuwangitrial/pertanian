@@ -157,7 +157,7 @@ export default function Tumbuhan({ item }) {
                         <div className="absolute bg-black bg-opacity-50 top-0 left-1/2 transform -translate-x-1/2 rounded-b-lg w-full h-full lg:h-full">
                             <div className="text-white mx-2 px-2 text-justify overflow-y-auto h-full g no-scrollbar">
                                 {isEditing && (
-                                    <input type="file" onChange={handleFileChange} className="mb-2" />
+                                    <input type="file" onChange={handleFileChange} className="mb-2 text-[10px] lg:text-xs" />
                                 )}
                                 <div className="text-lg font-bold mt-2 hidden lg:block">
                                     {isEditing ? (
