@@ -123,7 +123,7 @@ export default function Tumbuhan() {
           <div className="relative h-full w-full lg:w-2/3 border-b lg:border-r">
             {file ? (
               <img
-                src={URL.createObjectURL(file)} 
+                src={URL.createObjectURL(file)}
                 className="w-full h-[250px] lg:h-[500px] lg:w-full bg-cover bg-center rounded-t-md"
                 alt="Tumbuhan"
               />
@@ -173,14 +173,14 @@ export default function Tumbuhan() {
                 />
                 <input
                   type="text"
-                  name="NamaAlternatif"
+                  name="subNama"
                   placeholder="Nama Alternatif"
                   value={newItem.subNama}
                   onChange={handleChange}
                   className="text-white bg-transparent border-b-2 w-full border-white mb-2"
                 />
                 <textarea
-                  name="Keterangan"
+                  name="namaLatin"
                   placeholder="Keterangan"
                   value={newItem.namaLatin}
                   onChange={handleChange}
