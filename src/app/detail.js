@@ -99,7 +99,7 @@ export default function Tumbuhan({ item }) {
                 <div className="flex flex-col lg:flex-row">
                     <div className="relative h-full w-full lg:w-2/3 border-b lg:border-r ">
                         <img
-                            src={item.foto}
+                            src={item.foto || null}
                             className="w-full h-[250px] lg:h-[500px] lg:w-full bg-cover bg-center rounded-t-md"
                             alt="Tumbuhan"
                         />
@@ -131,16 +131,16 @@ export default function Tumbuhan({ item }) {
                                 )}
                             </div>
                         </div>
-                        <div className="absolute top-0 right-0 p-4 flex justify-center">
+                        <div className="absolute top-0 right-0 p-4 flex justify-center lg:text-xs text[8px] font-bold r">
                             <button
-                                className="px-4 py-2 bg-blue-500 text-white rounded"
+                                className="px-4 py-2 bg-orange-500  hover:text-white text-black rounded"
                                 onClick={handleEditToggle}
                             >
                                 {isEditing ? 'Cancel' : 'Edit'}
                             </button>
                             {isEditing && (
                                 <button
-                                    className="px-4 py-2 bg-green-500 text-white rounded ml-2"
+                                    className="px-4 py-2 bg-green-500 text-black hover:text-white ounded ml-2"
                                     onClick={handleSave}
                                 >
                                     Save
