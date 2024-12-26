@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Navigasi halaman
-import { supabase } from "../server/subapase"; // Sesuaikan path ini dengan lokasi sebenarnya
+import { supabase } from "../server/subapase";
+import Image from 'next/image';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ export default function Login() {
 
         if (error) throw error;
         
-        router.push('/admin'); // Ganti dengan halaman yang sesuai setelah login berhasil
+        router.push('/admin'); 
       } catch (error) {
         setError(error.message);
       }
@@ -30,7 +31,7 @@ export default function Login() {
 
     return (
         <div className="h-screen w-screen relative">
-            <img
+            <Image
                 src="miracle.jpg"
                 alt="Background"
                 className="absolute top-0 left-0 object-cover h-full w-full"

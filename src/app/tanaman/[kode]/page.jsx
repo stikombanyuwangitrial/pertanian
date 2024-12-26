@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { supabase } from '../../server/subapase';
+import Image from 'next/image';
+
 
 export default function Tumbuhan({ params }) {
   const [item, setItem] = useState(null);
@@ -47,9 +49,10 @@ export default function Tumbuhan({ params }) {
       <div className="overflow-hidden border border-white w-full max-h-screen lg:h-full rounded-lg">
         <div className="flex flex-col lg:flex-row">
           <div className="relative h-full w-full lg:w-2/3 border-b lg:h-auto">
-            <img
+            <Image
               src={item.foto}
               className="w-full h-[250px] lg:h-full lg:w-full bg-cover bg-center rounded-t-md"
+              alt='foto'
             />
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 w-full h-14 flex items-center justify-center">
               <div className="text-center text-white font-bold">
@@ -59,9 +62,10 @@ export default function Tumbuhan({ params }) {
             </div>
           </div>
           <div className="flex-1 relative overflow-hidden justify-center w-full h-full items-center">
-            <img
+            <Image
               src="https://res.cloudinary.com/dgnfgxqem/image/upload/v1732966875/tumbuhan/kgt0pkfa1jjyqfx1mill.jpg"
               className="w-full h-full lg:h-full object-cover"
+              alt='background'
             />
             <div className="overflow-hidden absolute bg-black bg-opacity-50 top-0 left-1/2 transform -translate-x-1/2 rounded-b-lg max-lg:rounded-r-none w-full h-full px-2 text-xs lg:max-h-screen">
             <div className='text-white mx-2 px-2 text-justify h-full overflow-y-auto no-scrollbar'>
