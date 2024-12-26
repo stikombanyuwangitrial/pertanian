@@ -1,10 +1,13 @@
-"use client";
-import Detail from '../detail'
-import React, { useState, useEffect } from 'react';
-import { supabase } from '../server/subapase';
-import Tambah from '../tambah'
+'use client'
 
-export default function TumbuhanList() {
+import { useState, useEffect } from 'react';
+import { supabase } from '../server/subapase';
+import { useRouter } from 'next/navigation';
+import Tambah from '../tambah';
+import Detail from '../detail';
+import Login from '../login/page'
+
+export default function Admin() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isTambahModalOpen, setIsTambahModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -12,48 +15,72 @@ export default function TumbuhanList() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const [user, setUser] = useState(null);
+    const router = useRouter();
+
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchSession = async () => {
+            setLoading(true);
             try {
-                setLoading(true);
-                const { data, error } = await supabase
-                    .from('tumbuhan')
-                    .select('*');
+                const { data: { session }, error: userError } = await supabase.auth.getSession();
 
-                if (error) {
-                    throw error;
+                if (userError || !session) {
+                    console.log("User not logged in:");
+                    setUser(null);
+                    setTumbuhanData([]);
+                    router.replace('/');
+                    return;
                 }
+
+                setUser(session.user);
+
+                // Ambil data tumbuhan dari Supabase
+                const { data, error: dataError } = await supabase.from('tumbuhan').select('*');
+
+                if (dataError) {
+                    console.error('Error fetching data:', dataError);
+                    throw dataError;
+                }
+
                 setTumbuhanData(data);
             } catch (err) {
+                console.error('Error:', err);
                 setError('Terjadi kesalahan saat mengambil data');
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchData();
-    }, []);
-
-    const filteredData = tumbuhanData.filter((item) =>
-        item.nama.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+        fetchSession();
+    }, [router]);
 
     if (loading) {
         return <div>Loading...</div>;
     }
 
-    if (error) {
-        return <div>{error}</div>;
+    if (!user) {
+        return <Login />;
     }
+
+    if (!tumbuhanData.length) {
+        return <div>No data available</div>;
+    }
+
+    const filteredData = tumbuhanData.filter((item) =>
+        item.nama.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
 
     const openModal = (item) => {
         setSelectedItem(item);
         setIsModalOpen(true);
     };
+
     const openTambahModal = () => {
         setIsTambahModalOpen(true);
     };
+
     const closeTambahModal = () => {
         setIsTambahModalOpen(false);
     };
@@ -63,17 +90,19 @@ export default function TumbuhanList() {
         setSelectedItem(null);
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
+    // Fungsi untuk logout
+    const handleLogout = async () => {
+        try {
+            await supabase.auth.signOut();
+            router.push('/');
+        } catch (error) {
+            console.error("Error logging out", error.message);
+        }
+    };
 
     return (
         <div className='bg-gray-900'>
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center space-x-4">
                 <input
                     type="text"
                     placeholder="Cari tumbuhan..."
@@ -81,15 +110,20 @@ export default function TumbuhanList() {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <div className="flex justify-center my-4 ml-2">
-                    <button
-                        onClick={openTambahModal}
-                        className="text-[20px] bg-green-500 hover:bg-green-600 text-white rounded px-3 py-1 font-bold flex items-center justify-center"
-                    >
-                        +
-                    </button>
-                </div>
+                <button
+                    onClick={openTambahModal}
+                    className="text-[20px] bg-green-500 hover:bg-green-600 text-white rounded px-3 py-1 font-bold flex items-center justify-center"
+                >
+                    +
+                </button>
+                <button
+                    onClick={handleLogout}
+                    className="text-[20px] bg-red-500 hover:bg-red-600 text-white rounded px-3 py-1 font-bold flex items-center justify-center"
+                >
+                    Logout
+                </button>
             </div>
+
             <div className='grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 w-full h-full justify-center'>
                 {filteredData.map((item) => (
                     <div
@@ -172,6 +206,7 @@ export default function TumbuhanList() {
                         </div>
                     </div>
                 )}
+
                 {isTambahModalOpen && (
                     <div className="fixed top-0 left-0 right-0 flex items-center justify-center bg-black bg-opacity-50 h-full z-50">
                         <div className="bg-black bg-opacity-60 rounded-lg shadow-lg w-full px-10 lg:px-16 py-4 relative">
