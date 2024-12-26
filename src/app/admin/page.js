@@ -133,7 +133,7 @@ export default function Admin() {
                     >
                         <div className="flex flex-col max-sm:border-r-2 sm:border-b-2 md:border-b-2 lg:border-b-2 br-border-none sm:rounded-bl-none sm:rounded-tr-lg md:border-b md:border-b rounded-l-sm md:rounded-bl-none md:rounded-t-lg h-full justify-center items-center w-2/4 sm:w-full md:w-full lg:w-full relative">
                             {item.foto && item.foto.trim() !== "" ? (
-                                <Image
+                                <img
                                     src={item.foto}
                                     alt="Foto"
                                     className="object-cover rounded-l-md h-full w-full sm:rounded-t-md sm:h-24 sm:w-24 md:h-24 md:w-24 lg:h-44 lg:w-full"
@@ -154,7 +154,7 @@ export default function Admin() {
                             </div>
                         </div>
                         <div className="relative w-full h-full">
-                            <Image
+                            <img
                                 src="y.jpg"
                                 alt="Background"
                                 className="h-44 md:h-44 lg:h-44 w-full h-full object-cover rounded-r-md sm:rounded-r-none sm:rounded-b-md" />

@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { supabase } from '../../server/subapase';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 
 export default function Tumbuhan({ params }) {
@@ -49,7 +49,7 @@ export default function Tumbuhan({ params }) {
       <div className="overflow-hidden border border-white w-full max-h-screen lg:h-full rounded-lg">
         <div className="flex flex-col lg:flex-row">
           <div className="relative h-full w-full lg:w-2/3 border-b lg:h-auto">
-            <Image
+            <img
               src={item.foto}
               className="w-full h-[250px] lg:h-full lg:w-full bg-cover bg-center rounded-t-md"
               alt='foto'
@@ -62,7 +62,7 @@ export default function Tumbuhan({ params }) {
             </div>
           </div>
           <div className="flex-1 relative overflow-hidden justify-center w-full h-full items-center">
-            <Image
+            <img
               src="https://res.cloudinary.com/dgnfgxqem/image/upload/v1732966875/tumbuhan/kgt0pkfa1jjyqfx1mill.jpg"
               className="w-full h-full lg:h-full object-cover"
               alt='background'

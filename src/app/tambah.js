@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { supabase } from './server/subapase';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 
 export default function Tumbuhan() {
@@ -124,7 +124,7 @@ export default function Tumbuhan() {
         <div className="flex flex-col lg:flex-row">
           <div className="relative h-full w-full lg:w-2/3 border-b lg:border-r">
             {file ? (
-              <Image
+              <img
                 src={URL.createObjectURL(file)}
                 className="w-full h-[250px] lg:h-[500px] lg:w-full bg-cover bg-center rounded-t-md"
                 alt="Tumbuhan"
@@ -145,7 +145,7 @@ export default function Tumbuhan() {
             </div>
           </div>
           <div className="flex-1 relative overflow-hidden justify-center w-full h-full lg:h-[500px] items-center">
-            <Image
+            <img
               src="https://res.cloudinary.com/dgnfgxqem/image/upload/v1732966875/tumbuhan/kgt0pkfa1jjyqfx1mill.jpg"
               className="w-full h-full lg:h-[600px] object-cover"
               alt="New Tumbuhan"
