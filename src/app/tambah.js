@@ -5,6 +5,8 @@ import { supabase } from './server/subapase';
 // import Image from 'next/image';
 
 
+
+
 export default function Tumbuhan() {
   const [newItem, setNewItem] = useState({
     nama: '',
@@ -263,6 +265,12 @@ export default function Tumbuhan() {
                   onChange={handleChange}
                   className="text-white bg-transparent w-full h-28 border border-white mb-2"
                 />
+                <button
+                className="block font-bold lg:hidden w-full mb-4 py-2 bg-orange-500 hover:text-white text-black rounded"
+                onClick={handleSave}
+              >
+                Save
+              </button>
               </div>
             </div>
           </div>

@@ -144,7 +144,7 @@ export default function Admin() {
                                 </div>
                             )}
 
-                            <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center py-2">
+                            <div className="absolute max-sm:rounded-bl-md bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center py-2">
                                 <p className="font-bold text-[12px] sm:text-xs md:text-xs lg:text-xs underline underline-offset-2">
                                     {item.nama}
                                 </p>
@@ -157,7 +157,7 @@ export default function Admin() {
                             <img
                                 src="y.jpg"
                                 alt="Background"
-                                className="h-44 md:h-44 lg:h-44 w-full h-full object-cover rounded-r-md sm:rounded-r-none sm:rounded-b-md" />
+                                className="lg:border-l lg:rounded-br-md h-44 md:h-44 lg:h-44 w-full h-full object-cover rounded-r-md sm:rounded-r-none sm:rounded-b-md" />
                             <div className="sm:rounded-b-md absolute inset-0 w-full flex h-full flex-col justify-between rounded-r-md sm:rounded-tr-none md:rounded-t-none md:rounded-bl-lg p-2 w-3/4 sm:w-full px-4">
                                 <div className="overflow-hidden overflow-y-auto w-full py-1 flex flex-col space-y-1 text-[8px] sm:text-[8px] md:text-[8px] lg:text-[8px] no-scrollbar h-full sm:h-28 md:h-28 lg:h-28">
                                     <div className='text-justify'>
