@@ -137,14 +137,14 @@ export default function Tumbuhan() {
               </div>
             )}
 
-            <div className="absolute top-0 right-0 p-4 flex justify-center lg:text-xs text[8px] font-bold">
+            {/* <div className="block hidden absolute top-0 right-0 p-4 flex justify-center lg:text-xs text[8px] font-bold">
               <button
                 className="px-4 py-2 bg-orange-500 hover:text-white text-black rounded"
                 onClick={handleSave}
               >
                 Save
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="flex-1 relative overflow-hidden justify-center w-full h-full lg:h-[500px] items-center">
             <img
@@ -266,7 +266,7 @@ export default function Tumbuhan() {
                   className="text-white bg-transparent w-full h-28 border border-white mb-2"
                 />
                 <button
-                className="block font-bold lg:hidden w-full mb-4 py-2 bg-orange-500 hover:text-white text-black rounded"
+                className="font-bold  w-full mb-4 py-2 bg-orange-500 hover:text-white text-black rounded"
                 onClick={handleSave}
               >
                 Save
