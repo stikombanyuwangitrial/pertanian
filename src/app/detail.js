@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { supabase } from './server/subapase';
-// import Image from 'next/image';
-
 
 export default function Tumbuhan({ item }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -111,7 +109,7 @@ export default function Tumbuhan({ item }) {
                                     <input
                                         type="text"
                                         name="nama"
-                                        value={editedItem.nama}
+                                        value={editedItem.nama || ''}
                                         onChange={handleChange}
                                         className="text-white bg-transparent border-b-2 w-full border-white"
                                     />
@@ -119,12 +117,11 @@ export default function Tumbuhan({ item }) {
                                     item.nama
                                 )}
                             </div>
-                            <div className="text-[10px] font-bold ">
-                                {isEditing ? (
+                            <div className="text-[10px] font-bold ">{isEditing ? (
                                     <input
                                         type="text"
                                         name="subLatin"
-                                        value={editedItem.subLatin}
+                                        value={editedItem.subLatin || ''}
                                         onChange={handleChange}
                                         className="text-white bg-transparent border-b-2 w-full border-white"
                                     />
@@ -166,7 +163,7 @@ export default function Tumbuhan({ item }) {
                                         <input
                                             type="text"
                                             name="nama"
-                                            value={editedItem.nama}
+                                            value={editedItem.nama || ''}
                                             onChange={handleChange}
                                             className="text-white bg-transparent border-b-2 w-full border-white"
                                         />
@@ -179,7 +176,7 @@ export default function Tumbuhan({ item }) {
                                         <input
                                             type="text"
                                             name="subLatin"
-                                            value={editedItem.subLatin}
+                                            value={editedItem.subLatin || ''}
                                             onChange={handleChange}
                                             className="text-white bg-transparent border-b-2 w-full border-white"
                                         />
@@ -193,7 +190,7 @@ export default function Tumbuhan({ item }) {
                                         <input
                                             type="text"
                                             name="subNama"
-                                            value={editedItem.subNama}
+                                            value={editedItem.subNama || ''}
                                             onChange={handleChange}
                                             className="text-white bg-transparent border-b-2 w-full border-white"
                                         />
@@ -204,7 +201,7 @@ export default function Tumbuhan({ item }) {
                                 {isEditing ? (
                                     <textarea
                                         name="namaLatin"
-                                        value={editedItem.namaLatin}
+                                        value={editedItem.namaLatin || ''}
                                         onChange={handleChange}
                                         className="mt-2 text-white bg-transparent w-full h-28 border border-white"
                                     />
@@ -215,8 +212,8 @@ export default function Tumbuhan({ item }) {
                                     {isEditing ? (
                                         <input
                                             type="text"
-                                            name="subNama"
-                                            value={editedItem.subAsalusul}
+                                            name="subAsalusul"
+                                            value={editedItem.subAsalusul || ''}
                                             onChange={handleChange}
                                             className="text-white bg-transparent border-b-2 w-full border-white"
                                         />
@@ -227,7 +224,7 @@ export default function Tumbuhan({ item }) {
                                 {isEditing ? (
                                     <textarea
                                         name="asalUsul"
-                                        value={editedItem.asalUsul}
+                                        value={editedItem.asalUsul || ''}
                                         onChange={handleChange}
                                         className="mt-2 text-white bg-transparent w-full h-28 border border-white"
                                     />
@@ -239,7 +236,7 @@ export default function Tumbuhan({ item }) {
                                         <input
                                             type="text"
                                             name="subSiklus"
-                                            value={editedItem.subSiklus}
+                                            value={editedItem.subSiklus || ''}
                                             onChange={handleChange}
                                             className="text-white bg-transparent border-b-2 w-full border-white"
                                         />
@@ -250,7 +247,7 @@ export default function Tumbuhan({ item }) {
                                 {isEditing ? (
                                     <textarea
                                         name="siklusHidup"
-                                        value={editedItem.siklusHidup}
+                                        value={editedItem.siklusHidup || ''}
                                         onChange={handleChange}
                                         className="mt-2 text-white bg-transparent w-full h-28 border border-white"
                                     />
@@ -262,7 +259,7 @@ export default function Tumbuhan({ item }) {
                                         <input
                                             type="text"
                                             name="subJenis"
-                                            value={editedItem.subJenis}
+                                            value={editedItem.subJenis || ''}
                                             onChange={handleChange}
                                             className="text-white bg-transparent border-b-2 w-full border-white"
                                         />
@@ -273,7 +270,7 @@ export default function Tumbuhan({ item }) {
                                 {isEditing ? (
                                     <textarea
                                         name="jenis"
-                                        value={editedItem.jenis}
+                                        value={editedItem.jenis || ''}
                                         onChange={handleChange}
                                         className="mt-2 text-white bg-transparent w-full h-28 border border-white"
                                     />
@@ -285,7 +282,7 @@ export default function Tumbuhan({ item }) {
                                         <input
                                             type="text"
                                             name="subBudidaya"
-                                            value={editedItem.subBudidaya}
+                                            value={editedItem.subBudidaya || ''}
                                             onChange={handleChange}
                                             className="text-white bg-transparent border-b-2 w-full border-white"
                                         />
@@ -296,7 +293,7 @@ export default function Tumbuhan({ item }) {
                                 {isEditing ? (
                                     <textarea
                                         name="budiDaya"
-                                        value={editedItem.budiDaya}
+                                        value={editedItem.budiDaya || ''}
                                         onChange={handleChange}
                                         className="mt-2 text-white bg-transparent w-full h-28 border border-white"
                                     />
@@ -308,7 +305,7 @@ export default function Tumbuhan({ item }) {
                                         <input
                                             type="text"
                                             name="subResep"
-                                            value={editedItem.subResep}
+                                            value={editedItem.subResep || ''}
                                             onChange={handleChange}
                                             className="text-white bg-transparent border-b-2 w-full border-white"
                                         />
@@ -319,7 +316,7 @@ export default function Tumbuhan({ item }) {
                                 {isEditing ? (
                                     <textarea
                                         name="resep"
-                                        value={editedItem.resep}
+                                        value={editedItem.resep || ''}
                                         onChange={handleChange}
                                         className="mt-2 text-white bg-transparent w-full h-28 border border-white"
                                     />

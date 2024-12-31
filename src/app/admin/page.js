@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation';
 import Tambah from '../tambah';
 import Detail from '../detail';
 import Login from '../login/page'
-import Image from 'next/image';
-
+// import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'; // import plugin
 
 export default function Admin() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -179,6 +180,9 @@ export default function Admin() {
                                         <div className=" mt-1 mb-2">{item.kesimpulan1}</div>
                                         <div className=" mt-1 mb-2">{item.kesimpulan2}</div>
                                         <div className=" mt-1 mb-2">{item.kesimpulan3}</div>
+                                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                            {item.namaLatin}
+                                        </ReactMarkdown>
                                     </div>
                                 </div>
                                 <div className='relative'>
